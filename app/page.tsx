@@ -6,7 +6,6 @@ export default function Home() {
   const config: ts_task[] = _config;
   return (
     <>
-      <pre>{JSON.stringify(config, null, 2)}</pre>
       <Client config={config} />
     </>
   );
