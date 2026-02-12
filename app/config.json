@@ -10,13 +10,7 @@
           {
             "id": "051c4f0a-7f5b-4dde-aaf5-61e94f586722",
             "title": "сделать api для системы администрирования vds",
-            "children": [
-              {
-                "id": "ba4ed3d0-03e5-49f6-a947-9fbd15630be4",
-                "title": "сделать api для исполнения bash",
-                "children": []
-              }
-            ]
+            "children": []
           }
         ]
       }
