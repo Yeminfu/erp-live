@@ -243,7 +243,7 @@ export default function TaskTree(props: { config: ts_task[] }) {
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Дерево задач</h1>
+      <h1 className="text-2xl font-bold mb-6 text-gray-800">Tasks</h1>
       <div className="space-y-3">
         {tasks.map((task) => (
           <TaskItem
@@ -291,8 +291,53 @@ export default function TaskTree(props: { config: ts_task[] }) {
           </button>
         </div>
 
-        <pre>{JSON.stringify(tasks, null, 2)}</pre>
+        <div
+          style={{
+            marginTop: 20,
+          }}
+        >
+          <h3>vds client</h3>
+          <VdsCLient />
+        </div>
+        {/* <pre>{JSON.stringify(tasks, null, 2)}</pre> */}
       </div>
     </div>
+  );
+}
+
+function VdsCLient() {
+  const [stateIn, setStateIn] = useState('ls');
+  const [stateOut, setStateOut] = useState("");
+  return (
+    <>
+      <textarea
+        onChange={(e) => {
+          setStateIn(e.target.value);
+          return e;
+        }}
+        style={{ border: "1px solid" }}
+        name=""
+        id=""
+        value={stateIn}
+      >{stateIn}</textarea>
+      <button
+        onClick={() => {
+          fetch("/api/vds/execute", {
+            method: "post",
+            body: JSON.stringify({
+              command: stateIn,
+            }),
+          })
+            .then((x) => x.json())
+            .then((x) => setStateOut(x.res.result))
+            .catch((error) => console.error({ error }));
+        }}
+        style={{ padding: 10, background: "yellow" }}
+      >
+        go
+      </button>
+      {/* <h1>stateOut</h1> */}
+      <pre>{stateOut}</pre>
+    </>
   );
 }
