@@ -319,7 +319,7 @@ function VdsCLient() {
         name=""
         id=""
         value={stateIn}
-      >{stateIn}</textarea>
+      ></textarea>
       <button
         onClick={() => {
           fetch("/api/vds/execute", {
