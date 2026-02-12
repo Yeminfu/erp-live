@@ -292,6 +292,27 @@ export default function TaskTree() {
         >
           ➕ Добавить корневую задачу
         </button>
+        <div
+          style={{
+            marginTop: 10,
+          }}
+        >
+          <button
+            onClick={() => {
+              console.log(tasks);
+
+              fetch("/api/save-config", {
+                method: "post",
+                body: JSON.stringify({
+                  tasks,
+                }),
+              });
+            }}
+            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+          >
+            ➕ Сохранить конфигурацию
+          </button>
+        </div>
 
         <pre>{JSON.stringify(tasks, null, 2)}</pre>
       </div>
