@@ -1,4 +1,3 @@
-// src/components/TaskTree.tsx
 "use client";
 
 import React, { useState, useRef, useCallback } from "react";
@@ -14,14 +13,7 @@ const initialTasks: Task[] = [
   {
     id: "1",
     title: "Создать ERP live",
-    children: [
-      // { id: "2", title: "Подзадача 1", children: [] },
-      // {
-      //   id: "3",
-      //   title: "Подзадача 2",
-      //   children: [{ id: "4", title: "Вложенная задача", children: [] }],
-      // },
-    ],
+    children: [],
   },
 ];
 

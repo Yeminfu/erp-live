@@ -1,15 +1,12 @@
-// import { useState } from "react";
 import Client from "./client";
-
-// import Image from "next/image";
-// const;?S
+import _config from "./config.json";
 
 export default function Home() {
+  const config = _config;
   return (
-    <Client
-      // tasks={[
-      //   { id: "string;", title: "string;", completed: false, children: [] },
-      // ]}
-    />
+    <>
+      <pre>{JSON.stringify(config, null, 2)}</pre>
+      <Client />
+    </>
   );
 }
