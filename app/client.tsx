@@ -1,29 +1,8 @@
-// src/components/TaskTree.tsx
 "use client";
 
 import React, { useState, useRef, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
-
-type Task = {
-  id: string;
-  title: string;
-  children: Task[];
-};
-
-const initialTasks: Task[] = [
-  {
-    id: "1",
-    title: "Создать ERP live",
-    children: [
-      // { id: "2", title: "Подзадача 1", children: [] },
-      // {
-      //   id: "3",
-      //   title: "Подзадача 2",
-      //   children: [{ id: "4", title: "Вложенная задача", children: [] }],
-      // },
-    ],
-  },
-];
+import ts_task from "./interfaces/ts_task";
 
 const TaskItem = React.memo(
   ({
@@ -41,7 +20,7 @@ const TaskItem = React.memo(
     editValue,
     inputRef,
   }: {
-    task: Task;
+    task: ts_task;
     level?: number;
     parentId: string | null;
     onEditStart: (id: string, title: string) => void;
@@ -148,8 +127,8 @@ const TaskItem = React.memo(
   }
 );
 
-export default function TaskTree() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
+export default function TaskTree(props: { config: ts_task[] }) {
+  const [tasks, setTasks] = useState<ts_task[]>(props.config);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -175,7 +154,7 @@ export default function TaskTree() {
       return;
     }
 
-    const updateRecursively = (tasks: Task[]): Task[] => {
+    const updateRecursively = (tasks: ts_task[]): ts_task[] => {
       return tasks.map((task) => {
         if (task.id === editingId) {
           return { ...task, title: editValue };
@@ -194,7 +173,7 @@ export default function TaskTree() {
     setEditValue("");
   }, []);
 
-  const removeTask = (tasks: Task[], taskIdToRemove: string): Task[] => {
+  const removeTask = (tasks: ts_task[], taskIdToRemove: string): ts_task[] => {
     return tasks
       .filter((task) => task.id !== taskIdToRemove)
       .map((task) => ({
@@ -216,12 +195,12 @@ export default function TaskTree() {
   );
 
   const addChild = useCallback((parentId: string) => {
-    const newTask: Task = {
+    const newTask: ts_task = {
       id: uuidv4(),
       title: "Новая подзадача",
       children: [],
     };
-    const addRec = (tasks: Task[]): Task[] => {
+    const addRec = (tasks: ts_task[]): ts_task[] => {
       return tasks.map((task) => {
         if (task.id === parentId) {
           return { ...task, children: [...task.children, newTask] };
@@ -234,7 +213,7 @@ export default function TaskTree() {
 
   const addSibling = useCallback(
     (parentId: string | null, targetId: string) => {
-      const newTask: Task = {
+      const newTask: ts_task = {
         id: uuidv4(),
         title: "Новая задача",
         children: [],
@@ -245,7 +224,7 @@ export default function TaskTree() {
         return;
       }
 
-      const addSiblingRec = (tasks: Task[]): Task[] => {
+      const addSiblingRec = (tasks: ts_task[]): ts_task[] => {
         return tasks.map((task) => {
           if (task.id === parentId) {
             const index = task.children.findIndex((t) => t.id === targetId);
@@ -292,6 +271,25 @@ export default function TaskTree() {
         >
           ➕ Добавить корневую задачу
         </button>
+        <div
+          style={{
+            marginTop: 10,
+          }}
+        >
+          <button
+            onClick={() => {
+              console.log(tasks);
+
+              fetch("/api/save-config", {
+                method: "post",
+                body: JSON.stringify(tasks),
+              });
+            }}
+            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+          >
+            ➕ Сохранить конфигурацию
+          </button>
+        </div>
 
         <pre>{JSON.stringify(tasks, null, 2)}</pre>
       </div>
