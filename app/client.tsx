@@ -135,7 +135,9 @@ const TaskItem = React.memo(
   }
 );
 
-export default function TaskTree() {
+export default function TaskTree(props: { config: ts_task[] }) {
+  console.log(props.config);
+
   const [tasks, setTasks] = useState<ts_task[]>(initialTasks);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");

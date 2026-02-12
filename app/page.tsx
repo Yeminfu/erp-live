@@ -2,11 +2,12 @@ import Client from "./client";
 import _config from "./config.json";
 
 export default function Home() {
-  const config = _config;
+  //@ts-ignore
+  const config: ts_task[] = _config;
   return (
     <>
       <pre>{JSON.stringify(config, null, 2)}</pre>
-      <Client />
+      <Client config={config} />
     </>
   );
 }
