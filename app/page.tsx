@@ -1,15 +1,12 @@
-// import { useState } from "react";
 import Client from "./client";
-
-// import Image from "next/image";
-// const;?S
+import _config from "./config.json";
 
 export default function Home() {
+  //@ts-ignore
+  const config: ts_task[] = _config;
   return (
-    <Client
-      // tasks={[
-      //   { id: "string;", title: "string;", completed: false, children: [] },
-      // ]}
-    />
+    <>
+      <Client config={config} />
+    </>
   );
 }
