@@ -6,7 +6,13 @@
       {
         "id": "d46ec69f-7939-4cc1-a932-c34d36ade1d0",
         "title": "сделать план реализации",
-        "children": []
+        "children": [
+          {
+            "id": "051c4f0a-7f5b-4dde-aaf5-61e94f586722",
+            "title": "сделать api",
+            "children": []
+          }
+        ]
       }
     ]
   }
