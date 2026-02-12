@@ -282,9 +282,7 @@ export default function TaskTree(props: { config: ts_task[] }) {
 
               fetch("/api/save-config", {
                 method: "post",
-                body: JSON.stringify({
-                  tasks,
-                }),
+                body: JSON.stringify(tasks),
               });
             }}
             className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
