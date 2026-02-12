@@ -70,7 +70,7 @@ const TaskItem = React.memo(
           ) : (
             <>
               <div>
-                <span >
+                <span style={{marginBottom:10, display:"block"}}>
                   {task.title}
                 </span>
               </div>
