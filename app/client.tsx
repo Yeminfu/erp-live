@@ -4,14 +4,6 @@ import React, { useState, useRef, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ts_task from "./interfaces/ts_task";
 
-const initialTasks: ts_task[] = [
-  {
-    id: "1",
-    title: "Создать ERP live",
-    children: [],
-  },
-];
-
 const TaskItem = React.memo(
   ({
     task,
@@ -136,9 +128,7 @@ const TaskItem = React.memo(
 );
 
 export default function TaskTree(props: { config: ts_task[] }) {
-  console.log(props.config);
-
-  const [tasks, setTasks] = useState<ts_task[]>(initialTasks);
+  const [tasks, setTasks] = useState<ts_task[]>(props.config);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
