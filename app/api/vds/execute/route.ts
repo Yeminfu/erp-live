@@ -10,18 +10,23 @@ export async function POST(request: NextRequest) {
         // Опционально: передать переменные окружения или настроить таймаут
       },
       (error, stdout, stderr) => {
-        if (error) {
-          console.error("Ошибка выполнения:", error.message);
-          reject({ error: error });
-          return;
-        }
-        if (stderr) {
-          console.error("stderr:", stderr);
-          reject({ error: stderr });
-          return;
-        }
-        resolve({ result: stdout });
-        console.log("Результат:\n", stdout);
+        resolve({
+          error,
+          stdout,
+          stderr,
+        });
+        // if (error) {
+        //   console.error("Ошибка выполнения:", error.message);
+        //   reject({ error: error });
+        //   return;
+        // }
+        // if (stderr) {
+        //   console.error("stderr:", stderr);
+        //   reject({ error: stderr });
+        //   return;
+        // }
+        // resolve({ result: stdout });
+        // console.log("Результат:\n", stdout);
       }
     );
   });
