@@ -10,6 +10,43 @@
           {
             "id": "051c4f0a-7f5b-4dde-aaf5-61e94f586722",
             "title": "сделать api для системы администрирования vds",
+            "children": [
+              {
+                "id": "090d14e5-f4eb-42b3-ac1f-f84f1f8af3d9",
+                "title": "Сделать полноценное vps соединение браузера с vps",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "fe520698-520c-4748-a60a-b20b7ef28e65",
+            "title": "Апи для предприятий",
+            "children": [
+              {
+                "id": "d3331caa-dd56-4200-9e6d-41dd5380129e",
+                "title": "Stz",
+                "children": []
+              },
+              {
+                "id": "1f15c27b-7dd5-4bfb-a054-6fd03db91789",
+                "title": "Мотохит",
+                "children": []
+              },
+              {
+                "id": "bd0f12ee-eb0e-4da8-8326-e38d4436d6e3",
+                "title": "Бурундук",
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "b89dc47e-e3fc-4bef-889a-584579bfcebf",
+            "title": "Апи для торговых точек",
+            "children": []
+          },
+          {
+            "id": "13c7fd58-db73-4389-9c83-264c5ef2e1f7",
+            "title": "Каталог инструментов для работы с терминалом",
             "children": []
           }
         ]

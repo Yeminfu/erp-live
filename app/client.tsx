@@ -39,7 +39,7 @@ const TaskItem = React.memo(
 
     return (
       <div className="mb-2" style={{ marginLeft: indent }}>
-        <div className="flex items-center gap-2 p-2 bg-white rounded border shadow-sm">
+        <div className="gap-2 p-2 bg-white rounded border shadow-sm">
           {isEditing ? (
             <>
               <input
@@ -69,9 +69,11 @@ const TaskItem = React.memo(
             </>
           ) : (
             <>
-              <span className="font-medium text-gray-800 min-w-0 truncate">
-                {task.title}
-              </span>
+              <div>
+                <span style={{ marginBottom: 10, display: "block" }}>
+                  {task.title}
+                </span>
+              </div>
               <button
                 onClick={() => onEditStart(task.id, task.title)}
                 className="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200 transition"
@@ -306,7 +308,7 @@ export default function TaskTree(props: { config: ts_task[] }) {
 }
 
 function VdsCLient() {
-  const [stateIn, setStateIn] = useState('ls');
+  const [stateIn, setStateIn] = useState("ls");
   const [stateOut, setStateOut] = useState("");
   return (
     <>
@@ -319,7 +321,8 @@ function VdsCLient() {
         name=""
         id=""
         value={stateIn}
-      >{stateIn}</textarea>
+      ></textarea>
+
       <button
         onClick={() => {
           fetch("/api/vds/execute", {
@@ -329,15 +332,23 @@ function VdsCLient() {
             }),
           })
             .then((x) => x.json())
-            .then((x) => setStateOut(x.res.result))
+            .then((x) => setStateOut(x))
             .catch((error) => console.error({ error }));
         }}
         style={{ padding: 10, background: "yellow" }}
       >
         go
       </button>
+
+      {stateOut ? (
+        <div className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto font-mono text-sm">
+          <pre>{JSON.stringify(stateOut, null, 2)}</pre>
+        </div>
+      ) : (
+        <div className="bg-gray-300">0</div>
+      )}
+
       {/* <h1>stateOut</h1> */}
-      <pre>{stateOut}</pre>
     </>
   );
 }
