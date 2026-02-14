@@ -70,7 +70,7 @@ const TaskItem = React.memo(
           ) : (
             <>
               <div>
-                <span style={{marginBottom:10, display:"block"}}>
+                <span style={{ marginBottom: 10, display: "block" }}>
                   {task.title}
                 </span>
               </div>
@@ -322,6 +322,7 @@ function VdsCLient() {
         id=""
         value={stateIn}
       ></textarea>
+
       <button
         onClick={() => {
           fetch("/api/vds/execute", {
@@ -331,15 +332,23 @@ function VdsCLient() {
             }),
           })
             .then((x) => x.json())
-            .then((x) => setStateOut(x.res.result))
+            .then((x) => setStateOut(x))
             .catch((error) => console.error({ error }));
         }}
         style={{ padding: 10, background: "yellow" }}
       >
         go
       </button>
+
+      {stateOut ? (
+        <div className="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto font-mono text-sm">
+          <pre>{JSON.stringify(stateOut, null, 2)}</pre>
+        </div>
+      ) : (
+        <div className="bg-gray-300">0</div>
+      )}
+
       {/* <h1>stateOut</h1> */}
-      <pre>{stateOut}</pre>
     </>
   );
 }
